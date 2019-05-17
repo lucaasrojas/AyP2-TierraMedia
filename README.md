@@ -40,11 +40,15 @@ Una vez cargados los datos de atracciones y/o promociones para todos los usuario
   - AxB
   - Porcentual
 - pruebas
-  - Usuario
+  - ArchivoTest
+  - PorcentualTest
+  - PromocionAxBTest
+  - PromocionTest
   - UsuarioTest
-  - UsuarioTest
+  - VisualizadorTest
 - utilidades
   - Archivo
+  - GeneradorDeListas
   - Visualizador
 
 ### Componentes
