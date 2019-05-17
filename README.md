@@ -17,23 +17,26 @@ Una vez cargados los datos de atracciones y/o promociones para todos los usuario
 ## Listado de archivos
 
 - archivos
-  - atracciones
+  - Atracciones
   - itinerario
+  - promociones
   - usuarios
 - componentes
   - Atraccion
   - Promocion
   - TipoDeAtracciones
   - Usuario
-- errores
+- excepciones
+  - ArmarListaException
   - AtraccionYaOfrecidaException
+  - CerrarReaderException
+  - EscribirArchivoException
+  - LecturaArchivoException
   - MeQuedeSinPlataException
   - MeQuedeSinTiempoException
   - YaNoHayAtraccionesParaOfrecerException
-- excepciones
-  - errors
-  - warning
 - principal
+  - Menu
   - Principal
 - promociones
   - Absoluta
