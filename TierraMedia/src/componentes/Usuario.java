@@ -19,51 +19,51 @@ public class Usuario {
 		this.tipoDeAtraccionPredilecta = tipo;
 
 	}
-
+	// Tiene test
 	public String getNombre() {
 		return nombre;
 	}
-
+	// Tiene test
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	// Tiene test
 	public int getCantidadDeMonedas() {
 		return cantidadDeMonedas;
 	}
-
+	// Tiene test
 	public void setCantidadDeMonedas(int cantidadDeMonedas) {
 		this.cantidadDeMonedas = cantidadDeMonedas;
 	}
-
+	// Tiene test
 	public double getTiempoDisponible() {
 		return tiempoDisponible;
 	}
-
+	// Tiene test
 	public void setTiempoDisponible(double tiempoDisponible) {
 		this.tiempoDisponible = tiempoDisponible;
 	}
-	
+	// Tiene test
 	public void setTipoAtraccionPredilecta(TipoDeAtracciones tipo) {
 		this.tipoDeAtraccionPredilecta = tipo;
 	}
-	
+	// Tiene test
 	public TipoDeAtracciones getTipoAtraccionPredilecta() {
 		return this.tipoDeAtraccionPredilecta;
 	}
-	
+	// Tiene test
 	public void addAtraccion(Atraccion atraccion) {
 		this.atraccionesSeleccionadas.add(atraccion);
 	}
-	
+	// Tiene test
 	public List<Atraccion> getListaAtracciones(){
 		return this.atraccionesSeleccionadas;
 	}
-	
+	// Tiene test
 	public void addPromocion(Promocion promocion) {
 		promocionesSeleccionadas.add(promocion);
 	}
-	
+	// Tiene test
 	public List<Promocion> getPromocionesSeleccionadas(){
 		return promocionesSeleccionadas;
 	}

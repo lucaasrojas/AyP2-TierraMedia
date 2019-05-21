@@ -200,35 +200,10 @@ public class Archivo {
 		while (itr.hasNext()) {
 			if (itr.next().getNombre().equals(dato))
 				return itr.nextIndex();
-		}
-		;
+		};
 
 		return -1;
 
-	}
-
-	// BufferedReader Utils
-
-	private BufferedReader getBufferReader(String nombreArchivo) throws Exception {
-		String ruta = RutaActual() + "/src/archivos/" + nombreArchivo.toLowerCase() + ".txt";
-		try {
-			File archivo = new File(ruta);
-			FileReader fileReader = new FileReader(archivo);
-			return new BufferedReader(fileReader);
-		} catch (Exception e) {
-			throw new LecturaArchivoException(nombreArchivo);
-		}
-
-	}
-
-	private void cerrarBufferedReader(BufferedReader buffered, String archivo) throws Exception {
-		try {
-			if (bufferReader != null)
-				bufferReader.close();
-		} catch (IOException e) {
-			// Exception que no se pudo cerrar el reader
-			throw new CerrarReaderException(archivo);
-		}
 	}
 
 	// BufferedReader Utils
@@ -251,7 +226,6 @@ public class Archivo {
 			if (bufferReader != null)
 				bufferReader.close();
 		} catch (IOException e) {
-			// Exception que no se pudo cerrar el reader
 			throw new CerrarReaderException(archivo);
 		}
 	}

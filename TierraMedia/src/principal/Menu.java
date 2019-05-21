@@ -33,6 +33,7 @@ public class Menu {
 			
 			try {
 				for (Usuario usuario : listaUsuarios) {
+					
 					// Se clonan para no referenciar al original y no borrar elementos del original
 					listaAtraccionesUsuario = new ArrayList<Atraccion>();
 					listaAtraccionesUsuario.addAll(listaAtraccionesGeneral);
@@ -58,44 +59,21 @@ public class Menu {
 							if (opcionSeleccionada < promocionesParaUsuario.size()) {
 								// Se selecciono Promocion
 								Promocion promocionSeleccionada = promocionesParaUsuario.get(opcionSeleccionada);
-								view.log("Se selecciono la promocion: " + promocionSeleccionada.getNombre());
-
-								try {
-									usuario.addPromocion(promocionSeleccionada);
-									usuario.setCantidadDeMonedas(
-											usuario.getCantidadDeMonedas() - promocionSeleccionada.getCosto());
-									usuario.setTiempoDisponible(usuario.getTiempoDisponible()
-											- promocionSeleccionada.getTiempoDeDuracion());
-
-									for (Atraccion atr : promocionSeleccionada.getAtracciones()) {
-										atr.setcapacidadRestante(atr.getcapacidadRestante() - 1);
-									}
-								} catch (Exception e) {
-									view.log("Error al agregar promocion: " + e.getMessage());
-								}
-							} else if ((opcionSeleccionada - promocionesParaUsuario.size()) < atraccionesParaUsuario
-									.size()) {
+								
+								agregarPromocionAUsuario(promocionSeleccionada, usuario);
+								
+							} else if ((opcionSeleccionada - promocionesParaUsuario.size()) < atraccionesParaUsuario.size()) {
 								opcionSeleccionada -= promocionesParaUsuario.size();
-								view.log("Se selecciono la atraccion: "
-										+ atraccionesParaUsuario.get(opcionSeleccionada).getNombre());
-
-								try {
-									usuario.addAtraccion(atraccionesParaUsuario.get(opcionSeleccionada));
-									usuario.setCantidadDeMonedas(usuario.getCantidadDeMonedas()
-											- atraccionesParaUsuario.get(opcionSeleccionada).getCosto());
-									usuario.setTiempoDisponible(usuario.getTiempoDisponible()
-											- atraccionesParaUsuario.get(opcionSeleccionada).getTiempoDeDuracion());
-									atraccionesParaUsuario.get(opcionSeleccionada).setcapacidadRestante(
-											atraccionesParaUsuario.get(opcionSeleccionada).getcapacidadRestante() - 1);
-								} catch (Exception e) {
-									System.out.println("Error: " + e.getMessage());
-								}
+								
+								agregarAtraccionAUsuario(totalItems, usuario);
 							} else {
 								view.log("Numero invalido 2");
 							}
 						} else {
 							view.log("Numero invalido");
 						}
+						
+						
 						// Se refrescan las listas de posibles opciones
 						atraccionesParaUsuario = generador.armarPosiblesAtraccionesParaUsuario(usuario,
 								atraccionesParaUsuario);
@@ -103,8 +81,8 @@ public class Menu {
 								listaPromocionesParaUsuario);
 
 					}
-				}
-				;
+					view.log(view.generarItinerarioPorUsuario(usuario));
+				};
 				archivo.generarItinerarios(listaUsuarios);
 			}
 
@@ -128,5 +106,40 @@ public class Menu {
 		}
 
 	}
+	
+	private void agregarPromocionAUsuario(Promocion promocionSeleccionada, Usuario usuario) {
+		view.log("Se selecciono la promocion: " + promocionSeleccionada.getNombre());
 
+		try {
+			usuario.addPromocion(promocionSeleccionada);
+			usuario.setCantidadDeMonedas(
+					usuario.getCantidadDeMonedas() - promocionSeleccionada.getCosto());
+			usuario.setTiempoDisponible(usuario.getTiempoDisponible()
+					- promocionSeleccionada.getTiempoDeDuracion());
+
+			for (Atraccion atr : promocionSeleccionada.getAtracciones()) {
+				atr.setcapacidadRestante(atr.getcapacidadRestante() - 1);
+			}
+		} catch (Exception e) {
+			view.log("Error al agregar promocion: " + e.getMessage());
+		}
+	}
+
+	private void agregarAtraccionAUsuario(int opcionSeleccionada, Usuario usuario) {
+		view.log("Se selecciono la atraccion: "
+				+ atraccionesParaUsuario.get(opcionSeleccionada).getNombre());
+
+		try {
+			usuario.addAtraccion(atraccionesParaUsuario.get(opcionSeleccionada));
+			usuario.setCantidadDeMonedas(usuario.getCantidadDeMonedas()
+					- atraccionesParaUsuario.get(opcionSeleccionada).getCosto());
+			usuario.setTiempoDisponible(usuario.getTiempoDisponible()
+					- atraccionesParaUsuario.get(opcionSeleccionada).getTiempoDeDuracion());
+			atraccionesParaUsuario.get(opcionSeleccionada).setcapacidadRestante(
+					atraccionesParaUsuario.get(opcionSeleccionada).getcapacidadRestante() - 1);
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
+	
 }
