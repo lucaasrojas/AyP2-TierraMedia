@@ -31,7 +31,9 @@ public class Archivo {
 				listaUsuarios.add(crearUsuario(datos));
 
 			}
-
+			if(listaUsuarios.size() == 0) {
+				throw new ListaVaciaException(archivo);
+			}
 			return listaUsuarios;
 		} catch (IOException e) {
 			throw new ArmarListaException(archivo);
@@ -52,7 +54,9 @@ public class Archivo {
 				listaAtracciones.add(crearAtraccion(datos));
 
 			}
-
+			if(listaAtracciones.size() == 0) {
+				throw new ListaVaciaException(archivo);
+			}
 			return listaAtracciones;
 		} catch (IOException e) {
 			throw new ArmarListaException(archivo);
@@ -81,7 +85,9 @@ public class Archivo {
 				listaPromociones.add(crearPromocion(datos[0], atracciones, datos[2], datos[3], datos[4]));
 
 			}
-
+			if(listaPromociones.size() == 0) {
+				throw new ListaVaciaException(archivo);
+			}
 			return listaPromociones;
 		} catch (IOException e) {
 			throw new ArmarListaException(archivo);

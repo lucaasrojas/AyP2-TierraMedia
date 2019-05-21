@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.*;
 
 import componentes.*;
+import excepciones.ListaVaciaException;
 
 public class Menu {
 
@@ -101,6 +102,7 @@ public class Menu {
 			listaUsuarios = archivo.LeerUsuarios("usuarios");
 			listaAtraccionesGeneral = archivo.LeerAtracciones("atracciones");
 			listaPromocionesGeneral = archivo.LeerPromociones("promociones", listaAtraccionesGeneral);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
