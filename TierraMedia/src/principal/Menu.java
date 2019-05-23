@@ -29,8 +29,6 @@ public class Menu {
 		leerArchivos();
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		if (listaUsuarios.size() > 0 && listaAtraccionesGeneral.size() > 0) {
-
 			
 			try {
 				for (Usuario usuario : listaUsuarios) {
@@ -90,10 +88,6 @@ public class Menu {
 			catch (Exception e) {
 				System.err.println("Error " + e.getMessage());
 			}
-
-		} else {
-			view.log("Listas vacias");
-		}
 
 	}
 

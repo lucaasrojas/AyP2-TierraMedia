@@ -1,6 +1,6 @@
 package componentes;
 
-public class Atraccion implements Comparable<Atraccion> {
+public class Atraccion{
 
 	private String nombre;
 	private int costo;
@@ -64,13 +64,8 @@ public class Atraccion implements Comparable<Atraccion> {
 		return this.getNombre() + " | "  + this.getCosto() + " | "  + this.getTiempoDeDuracion()  + " | "  + this.getcapacidadRestante()  + " | "  + this.getTipo();
 	}
 
-	@Override
-	public int compareTo(Atraccion atraccion) {
-		if(this.tipo == atraccion.tipo) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+	public int compareTo(Atraccion a2) {
+		return tipo == a2.getTipo() ? 1 : -1;
 	}
+
 }
