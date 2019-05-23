@@ -1,44 +1,38 @@
 package utilidades;
 
 import java.util.*;
+import java.util.Map.Entry;
+
 import componentes.*;
 
 public class GeneradorDeListas {
 
 	public List<Atraccion> armarPosiblesAtraccionesParaUsuario(Usuario usuario, List<Atraccion> listadoAtracciones) {
 
-		
-		Map<TipoDeAtracciones,Atraccion> map = new HashMap<>();
-		
-		for(Atraccion atr : listadoAtracciones) {
-			System.out.println("tree");
-			map.put(atr.getTipo(), atr);
-		}
-		
-		List<Atraccion> sortedList = new ArrayList<Atraccion>();
-		
-		
-		/*
-		Comparator<Atraccion> comparador = new Comparator<Atraccion>() {
-			@Override
-			public int compare(Atraccion a1, Atraccion a2) {
-				if(usuario.getTipoAtraccionPredilecta() == a1.getTipo()) {
-					return a1.compareTo(a2);
-				}
-				return 1;
-			}
-		};
-		*/
-		//Collections.sort(listadoAtracciones, comparador);
-		System.out.println(treeSorted.size());
-		for (Map.Entry<TipoDeAtracciones, Atraccion> entry : treeSorted.entrySet()) {
-		     System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-		}
-		
 		listadoAtracciones.removeIf(item -> item.getCosto() > usuario.getCantidadDeMonedas() || item.getTiempoDeDuracion() > usuario.getTiempoDisponible()
 				|| usuario.getListaAtracciones().contains(item) || item.getcapacidadRestante() == 0);
+		
+		Map<Integer, Atraccion> atraccionesTreeMap = new TreeMap<Integer, Atraccion>(Collections.reverseOrder());
+		Map<Integer, Atraccion>  atraccionesPredilectas = new TreeMap<Integer, Atraccion>(Collections.reverseOrder());
+		for(Atraccion atr : listadoAtracciones) {
+			if(atr.getTipo() == usuario.getTipoAtraccionPredilecta()) {
+				atraccionesPredilectas.put(atr.getCosto(), atr);
+			} else {
+				atraccionesTreeMap.put(atr.getCosto(), atr);				
+			}
+		}
+		List<Atraccion> sortedList = new ArrayList<Atraccion>();
+		
+		for (Map.Entry<Integer, Atraccion> entry : atraccionesPredilectas.entrySet()) {
+			sortedList.add(entry.getValue());
+		}
+		for (Map.Entry<Integer, Atraccion> entry : atraccionesTreeMap.entrySet()) {
+			sortedList.add(entry.getValue());
+		}
+		
+		
         
-		return listadoAtracciones;
+		return sortedList;
 
 	}
 	
